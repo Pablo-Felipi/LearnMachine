@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:learn_machine/src/domain/models/student/address_model.dart';
-import 'package:learn_machine/src/domain/models/student/courses_model.dart';
+
+import 'package:machine/src/domain/models/student/address_model.dart';
+import 'package:machine/src/domain/models/student/courses_model.dart';
 
 class StudentModel {
   final int? id;
@@ -38,7 +39,9 @@ class StudentModel {
       name: map['name'] ?? '',
       age: map['age'] ?? 0,
       nameCourses: List<String>.from(map['nameCourses'] ?? <String>[]),
-      address: AddressModel.fromMap(map: map['address']?? AddressModel.empty()),
+      address: AddressModel.fromMap(
+        map: map['address'] ?? AddressModel.empty(),
+      ),
       courses:
           map['courses'].map<CoursesModel>((courseItem) {
             return CoursesModel.fromMap(map: courseItem);

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:learn_machine/src/domain/models/student/student_model.dart';
-import 'package:learn_machine/src/shared/app_shared.dart';
-import 'package:learn_machine/src/ui/widgets/simple_text_widget.dart';
+import 'package:machine/src/domain/models/student/student_model.dart';
+import 'package:machine/src/shared/app_shared.dart';
+import 'package:machine/src/ui/widgets/simple_text_widget.dart';
+
 
 class StudentListContainerWidget extends StatelessWidget {
   final StudentModel student;

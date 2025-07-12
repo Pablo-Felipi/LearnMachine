@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/shared/app_shared.dart';
+import 'package:machine/src/shared/app_shared.dart';
+
 
 class CenterCircularProgressIndicatorWidget extends StatelessWidget {
   const CenterCircularProgressIndicatorWidget({super.key});

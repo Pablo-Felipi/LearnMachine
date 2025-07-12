@@ -1,7 +1,6 @@
 import 'dart:convert';
-
-import 'package:learn_machine/src/domain/models/student/city_model.dart';
-import 'package:learn_machine/src/domain/models/student/phone_model.dart';
+import 'package:machine/src/domain/models/student/city_model.dart';
+import 'package:machine/src/domain/models/student/phone_model.dart';
 
 class AddressModel {
   final String street;

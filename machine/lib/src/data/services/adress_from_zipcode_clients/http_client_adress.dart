@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:learn_machine/src/interfaces/adress_from_zipcode/interface_http_client_adress_zipcode.dart';
+import 'package:machine/src/interfaces/adress_from_zipcode/interface_http_client_adress_zipcode.dart';
 
 class HttpClientAdress implements InterfaceHttpClientAddressZipcode {
   final client = http.Client();

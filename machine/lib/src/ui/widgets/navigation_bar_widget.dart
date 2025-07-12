@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/shared/app_shared.dart';
-import 'package:learn_machine/src/ui/controller/navigation_bar_controller.dart';
-import 'package:learn_machine/src/ui/view/create/create_page.dart';
+import 'package:machine/src/shared/app_shared.dart';
+import 'package:machine/src/ui/controller/navigation_bar_controller.dart';
+import 'package:machine/src/ui/view/create/create_page.dart';
 
 class NavigationBarWidget extends StatefulWidget {
   final NavigationBarController controller;

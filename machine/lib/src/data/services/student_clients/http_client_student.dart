@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:learn_machine/src/interfaces/student/interface_http_client_student.dart';
 import 'package:http/http.dart' as http;
+import 'package:machine/src/interfaces/student/interface_http_client_student.dart';
 
 class HttpClientStudent implements InterfaceHttpClientStudent {
   final client = http.Client();

@@ -1,7 +1,9 @@
 import 'dart:convert';
-import 'package:learn_machine/src/domain/models/student/student_model.dart';
-import 'package:learn_machine/src/interfaces/student/interface_http_client_student.dart';
-import 'package:learn_machine/src/interfaces/student/interface_student_repository.dart';
+
+import 'package:machine/src/domain/models/student/student_model.dart';
+import 'package:machine/src/interfaces/student/interface_http_client_student.dart';
+import 'package:machine/src/interfaces/student/interface_student_repository.dart';
+
 
 class StudentRepository implements InterfaceStudentRepository {
   final InterfaceHttpClientStudent client;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/domain/models/student/student_model.dart';
-import 'package:learn_machine/src/ui/controller/student_form_controller.dart';
-import 'package:learn_machine/src/ui/controller/students_controller.dart';
+import 'package:machine/src/domain/models/student/student_model.dart';
+import 'package:machine/src/ui/controller/student_form_controller.dart';
+import 'package:machine/src/ui/controller/students_controller.dart';
 
 enum StepForm { firstStep, secondStep }
 

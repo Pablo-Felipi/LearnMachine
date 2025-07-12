@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/ui/controller/navigation_bar_controller.dart';
-import 'package:learn_machine/src/ui/controller/students_controller.dart';
-import 'package:learn_machine/src/ui/widgets/app_bar_widget.dart';
-import 'package:learn_machine/src/ui/widgets/center_circular_progress_indicator_widget.dart';
-import 'package:learn_machine/src/ui/widgets/center_text_is_error_widget.dart';
-import 'package:learn_machine/src/ui/widgets/get_student_api_button_widget.dart';
-import 'package:learn_machine/src/ui/widgets/navigation_bar_widget.dart';
-import 'package:learn_machine/src/ui/widgets/student_list_container_widget.dart';
+import 'package:machine/src/ui/controller/navigation_bar_controller.dart';
+import 'package:machine/src/ui/controller/students_controller.dart';
+import 'package:machine/src/ui/widgets/app_bar_widget.dart';
+import 'package:machine/src/ui/widgets/center_circular_progress_indicator_widget.dart';
+import 'package:machine/src/ui/widgets/center_text_is_error_widget.dart';
+import 'package:machine/src/ui/widgets/get_student_api_button_widget.dart';
+import 'package:machine/src/ui/widgets/navigation_bar_widget.dart';
+import 'package:machine/src/ui/widgets/student_list_container_widget.dart';
+
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

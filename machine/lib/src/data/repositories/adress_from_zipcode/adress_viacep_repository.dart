@@ -1,6 +1,6 @@
-import 'package:learn_machine/src/domain/models/adress_from_zipcode/zip_code_adress_model.dart';
-import 'package:learn_machine/src/interfaces/adress_from_zipcode/interface_adress_zipcode_repository.dart';
-import 'package:learn_machine/src/interfaces/adress_from_zipcode/interface_http_client_adress_zipcode.dart';
+import 'package:machine/src/domain/models/adress_from_zipcode/zip_code_adress_model.dart';
+import 'package:machine/src/interfaces/adress_from_zipcode/interface_adress_zipcode_repository.dart';
+import 'package:machine/src/interfaces/adress_from_zipcode/interface_http_client_adress_zipcode.dart';
 
 class AdressViacepRepository implements InterfaceAddressZipcodeRepository {
   final InterfaceHttpClientAddressZipcode client;

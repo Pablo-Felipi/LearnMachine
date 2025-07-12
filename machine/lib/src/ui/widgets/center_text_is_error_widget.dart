@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/ui/widgets/simple_text_widget.dart';
+import 'package:machine/src/ui/widgets/simple_text_widget.dart';
 
 class CenterTextIsErrorWidget extends StatelessWidget {
   final String text;
-  const CenterTextIsErrorWidget ({super.key, required this.text});
+  const CenterTextIsErrorWidget({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

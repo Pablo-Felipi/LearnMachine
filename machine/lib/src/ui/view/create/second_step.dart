@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/shared/app_shared.dart';
-import 'package:learn_machine/src/ui/controller/student_form_controller.dart';
-import 'package:learn_machine/src/ui/widgets/simple_text_widget.dart';
-import 'package:learn_machine/src/ui/widgets/text_form_field_border_widget.dart';
+import 'package:machine/src/shared/app_shared.dart';
+import 'package:machine/src/ui/controller/student_form_controller.dart';
+import 'package:machine/src/ui/widgets/simple_text_widget.dart';
+import 'package:machine/src/ui/widgets/text_form_field_border_widget.dart';
 import 'package:provider/provider.dart';
 
 class CreateSecondStep extends StatefulWidget {

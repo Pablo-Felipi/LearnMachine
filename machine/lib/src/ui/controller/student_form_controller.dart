@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/domain/models/student/address_model.dart';
-import 'package:learn_machine/src/domain/models/student/city_model.dart';
-import 'package:learn_machine/src/domain/models/student/courses_model.dart';
-import 'package:learn_machine/src/domain/models/student/phone_model.dart';
-import 'package:learn_machine/src/domain/models/student/student_model.dart';
+import 'package:machine/src/domain/models/student/address_model.dart';
+import 'package:machine/src/domain/models/student/city_model.dart';
+import 'package:machine/src/domain/models/student/courses_model.dart';
+import 'package:machine/src/domain/models/student/phone_model.dart';
+import 'package:machine/src/domain/models/student/student_model.dart';
 
 class StudentFormController extends ChangeNotifier {
   String fullName = '';

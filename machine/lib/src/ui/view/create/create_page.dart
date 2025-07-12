@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:learn_machine/src/shared/app_shared.dart';
-import 'package:learn_machine/src/ui/controller/create_page_controller.dart';
-import 'package:learn_machine/src/ui/controller/student_form_controller.dart';
-import 'package:learn_machine/src/ui/controller/students_controller.dart';
-import 'package:learn_machine/src/ui/view/create/first_step.dart';
-import 'package:learn_machine/src/ui/view/create/second_step.dart';
-import 'package:learn_machine/src/ui/widgets/app_bar_widget.dart';
-import 'package:learn_machine/src/ui/widgets/simple_text_widget.dart';
-import 'package:learn_machine/src/ui/widgets/steps_container_progress_widget.dart';
+import 'package:machine/src/shared/app_shared.dart';
+import 'package:machine/src/ui/controller/create_page_controller.dart';
+import 'package:machine/src/ui/controller/student_form_controller.dart';
+import 'package:machine/src/ui/controller/students_controller.dart';
+import 'package:machine/src/ui/view/create/first_step.dart';
+import 'package:machine/src/ui/view/create/second_step.dart';
+import 'package:machine/src/ui/widgets/app_bar_widget.dart';
+import 'package:machine/src/ui/widgets/simple_text_widget.dart';
+import 'package:machine/src/ui/widgets/steps_container_progress_widget.dart';
+
 import 'package:provider/provider.dart';
 
 class CreatePage extends StatefulWidget {
