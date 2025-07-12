@@ -4,9 +4,9 @@ import 'package:machine/src/domain/models/student/student_model.dart';
 import 'package:machine/src/shared/app_shared.dart';
 import 'package:machine/src/ui/widgets/simple_text_widget.dart';
 
-
 class StudentListContainerWidget extends StatelessWidget {
   final StudentModel student;
+  final String editSvg = 'assets/svg/edit.svg';
   const StudentListContainerWidget({super.key, required this.student});
 
   @override
@@ -35,7 +35,7 @@ class StudentListContainerWidget extends StatelessWidget {
 
           trailing: IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset('assets/svg/edit.svg'),
+            icon: SvgPicture.asset(editSvg),
           ),
         ),
       ),

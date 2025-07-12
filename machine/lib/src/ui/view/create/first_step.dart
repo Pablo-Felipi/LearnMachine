@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:machine/src/data/courses_active/courses_active.dart';
+import 'package:machine/src/domain/models/active_courses/active_courses_model.dart';
 import 'package:machine/src/shared/app_shared.dart';
+import 'package:machine/src/ui/controller/active_courses_controller.dart';
 import 'package:machine/src/ui/controller/student_form_controller.dart';
 import 'package:machine/src/ui/widgets/simple_text_widget.dart';
 import 'package:machine/src/ui/widgets/text_form_field_border_widget.dart';
@@ -17,7 +18,6 @@ class CreateFirstStep extends StatefulWidget {
 }
 
 class _CreateFirstStepState extends State<CreateFirstStep> {
-  final List<String> courses = CoursesActive.courses;
   final List<String> selectedItem = [];
 
   SimpleTextWidget formLabel(String labelString) {
@@ -33,8 +33,20 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
   final phoneEc = TextEditingController();
 
   @override
+  void dispose() {
+    fullNameEc.dispose();
+    ageEc.dispose();
+    phoneEc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final formDataController = Provider.of<StudentFormController>(context);
+    final activeCoursesController = Provider.of<ActiveCoursesController>(
+      context,
+    );
+    final List<ActiveCoursesModel> courses = activeCoursesController.state;
     return Form(
       key: widget.formKey,
       child: Column(
@@ -107,20 +119,20 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
                   return FilterChip(
                     selectedColor: AppShared.defaultBlueColor,
                     backgroundColor: Colors.white,
-                    label: SimpleTextWidget(text: courseItem),
-                    selected: selectedItem.contains(courseItem),
+                    label: SimpleTextWidget(text: courseItem.name),
+                    selected: selectedItem.contains(courseItem.name),
                     onSelected: (bool selected) {
                       setState(() {
                         if (selected) {
-                          selectedItem.add(courseItem);
+                          selectedItem.add(courseItem.name);
                           formDataController.updateNameCourses(
-                            value: courseItem,
+                            value: courseItem.name,
                             delete: false,
                           );
                         } else {
-                          selectedItem.remove(courseItem);
+                          selectedItem.remove(courseItem.name);
                           formDataController.updateNameCourses(
-                            value: courseItem,
+                            value: courseItem.name,
                             delete: true,
                           );
                         }

@@ -9,7 +9,7 @@ class AdressViacepRepository implements InterfaceAddressZipcodeRepository {
   AdressViacepRepository({required this.client, required this.urlAdress});
 
   @override
-  Future getAdress({required String cep}) async {
+  Future<ZipCodeAddressModel> getAdress({required String cep}) async {
     final apiResponse = await client.getData(url: urlAdress, cep: cep);
 
     if (apiResponse.statusCode != 200) {

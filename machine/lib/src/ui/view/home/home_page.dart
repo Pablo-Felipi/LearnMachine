@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:machine/src/ui/controller/active_courses_controller.dart';
 import 'package:machine/src/ui/controller/navigation_bar_controller.dart';
 import 'package:machine/src/ui/controller/students_controller.dart';
+import 'package:machine/src/ui/view/create/create_page.dart';
 import 'package:machine/src/ui/widgets/app_bar_widget.dart';
 import 'package:machine/src/ui/widgets/center_circular_progress_indicator_widget.dart';
 import 'package:machine/src/ui/widgets/center_text_is_error_widget.dart';
@@ -22,6 +24,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final studentController = Provider.of<StudentsController>(context);
+    final navigationBarController = NavigationBarController();
+    final activeCoursesController = Provider.of<ActiveCoursesController>(
+      context,
+    );
 
     return Scaffold(
       appBar: const AppBarWidget(),
@@ -50,7 +56,15 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       bottomNavigationBar: NavigationBarWidget(
-        controller: NavigationBarController(),
+        onTapFunction: (clickedButtonIndex) async{
+          navigationBarController.setCurrentIndex(index: clickedButtonIndex);
+          switch (clickedButtonIndex) {
+            case 1:
+              Navigator.of(context).pushNamed(CreatePage.createRoute);
+             await activeCoursesController.get();
+          }
+        },
+        controller: navigationBarController,
       ),
     );
   }

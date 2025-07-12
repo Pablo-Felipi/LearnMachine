@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:machine/src/shared/app_shared.dart';
 
 class SimpleTextWidget extends StatelessWidget {
   final String text;
   final FontWeight? fontWeightText;
   final double? fontSizeText;
   final Color? colorText;
-  
+
   const SimpleTextWidget({
     super.key,
     required this.text,
@@ -19,7 +20,7 @@ class SimpleTextWidget extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontFamily: 'Montserrat',
+        fontFamily: AppShared.defaultFontFamily,
         fontWeight: fontWeightText,
         fontSize: fontSizeText ?? 12,
         color: colorText ?? Colors.black,
