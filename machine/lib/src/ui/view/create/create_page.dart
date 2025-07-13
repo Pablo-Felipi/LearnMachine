@@ -34,6 +34,17 @@ class _CreatePageState extends State<CreatePage> {
     }
   }
 
+  successCreate() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3),
+        backgroundColor: AppShared.defaultGreyColor,
+        content: SimpleTextWidget(text: 'Student successfully created'),
+      ),
+    );
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -102,13 +113,17 @@ class _CreatePageState extends State<CreatePage> {
                         AppShared.defaultGreyColor,
                       ),
                     ),
-                    onPressed: () {
-                      createController.nextStep(
+                    onPressed: () async {
+                      final formStepsResult = await createController.nextStep(
                         formkeyFirstOne: firstStepFormKey,
                         formkeySecondOne: secondStepFormKey,
                         studentController: studentsController,
                         studentFormController: studentFormController,
                       );
+
+                      if (formStepsResult && mounted) {
+                        successCreate();
+                      }
                     },
                     child: SimpleTextWidget(
                       text: createController.buttonName,

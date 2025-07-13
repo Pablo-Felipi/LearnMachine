@@ -17,13 +17,22 @@ class CreateSecondStep extends StatefulWidget {
 }
 
 class _CreateSecondStepState extends State<CreateSecondStep> {
+  final validator = FormValidator();
   final zipCodeEc = TextEditingController();
   final streetEC = TextEditingController();
   final streetNumberEc = TextEditingController();
   final cityEc = TextEditingController();
   final cityId = TextEditingController();
 
-  final validator = FormValidator();
+  @override
+  void dispose() {
+    zipCodeEc.dispose();
+    streetEC.dispose();
+    streetNumberEc.dispose();
+    cityEc.dispose();
+    cityId.dispose();
+    super.dispose();
+  }
 
   SimpleTextWidget formLabel(String labelString) {
     return SimpleTextWidget(

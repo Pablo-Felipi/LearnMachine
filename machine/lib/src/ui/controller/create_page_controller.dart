@@ -9,12 +9,12 @@ class CreatePageController extends ChangeNotifier {
   String buttonName = 'Continue';
 
   int currentStep = 0;
-  void nextStep({
+  Future<bool> nextStep({
     required StudentsController studentController,
     required StudentFormController studentFormController,
     required GlobalKey<FormState> formkeyFirstOne,
     required GlobalKey<FormState> formkeySecondOne,
-  }) {
+  }) async {
     var firstFormValid = formkeyFirstOne.currentState?.validate() ?? false;
 
     if (firstFormValid && currentStep < 1) {
@@ -28,9 +28,11 @@ class CreatePageController extends ChangeNotifier {
       if (secondFormValid) {
         formkeySecondOne.currentState?.save();
         final StudentModel newStudent = studentFormController.createStudent();
-        studentController.create(student: newStudent);
+        await studentController.create(student: newStudent);
+        return true;
       }
     }
+    return false;
   }
 
   List<StepForm> getSteps() => <StepForm>[

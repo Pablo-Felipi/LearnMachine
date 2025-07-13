@@ -37,6 +37,18 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
   final validator = FormValidator();
 
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final activeCoursesController = Provider.of<ActiveCoursesController>(
+        listen: false,
+        context,
+      );
+      activeCoursesController.get();
+    });
+    super.initState();
+  }
+
+  @override
   void dispose() {
     fullNameEc.dispose();
     ageEc.dispose();

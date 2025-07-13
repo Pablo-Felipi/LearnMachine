@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:machine/src/ui/controller/active_courses_controller.dart';
 import 'package:machine/src/ui/controller/navigation_bar_controller.dart';
 import 'package:machine/src/ui/controller/students_controller.dart';
 import 'package:machine/src/ui/view/create/create_page.dart';
@@ -25,9 +24,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final studentController = Provider.of<StudentsController>(context);
     final navigationBarController = NavigationBarController();
-    final activeCoursesController = Provider.of<ActiveCoursesController>(
-      context,
-    );
 
     return Scaffold(
       appBar: const AppBarWidget(),
@@ -56,12 +52,11 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       bottomNavigationBar: NavigationBarWidget(
-        onTapFunction: (clickedButtonIndex) async{
+        onTapFunction: (clickedButtonIndex) async {
           navigationBarController.setCurrentIndex(index: clickedButtonIndex);
           switch (clickedButtonIndex) {
             case 1:
               Navigator.of(context).pushNamed(CreatePage.createRoute);
-             await activeCoursesController.get();
           }
         },
         controller: navigationBarController,
