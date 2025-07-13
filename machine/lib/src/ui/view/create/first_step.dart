@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/formatters/formatter_utils.dart';
 import 'package:machine/src/domain/models/active_courses/active_courses_model.dart';
 import 'package:machine/src/shared/app_shared.dart';
+import 'package:machine/src/shared/text_formatter_shared.dart';
 import 'package:machine/src/ui/controller/active_courses_controller.dart';
 import 'package:machine/src/ui/controller/student_form_controller.dart';
+import 'package:machine/src/ui/validations/form_validator.dart';
 import 'package:machine/src/ui/widgets/simple_text_widget.dart';
 import 'package:machine/src/ui/widgets/text_form_field_border_widget.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +34,7 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
   final fullNameEc = TextEditingController();
   final ageEc = TextEditingController();
   final phoneEc = TextEditingController();
+  final validator = FormValidator();
 
   @override
   void dispose() {
@@ -54,8 +58,10 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
         spacing: 12,
         children: [
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: fullNameEc,
-            onSaved: (newValue) => formDataController.updateFullName(newValue!),
+            validator: validator.fullName,
+            onSaved: (value) => formDataController.updateFullName(value!),
             decoration: InputDecoration(
               border: TextFormFieldBorderWidget.defaultBorder,
               focusedBorder: TextFormFieldBorderWidget.defaultBorder,
@@ -65,8 +71,12 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
             ),
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: ageEc,
-            onSaved: (newValue) => formDataController.updateAge(newValue ?? ''),
+            validator: validator.age,
+            keyboardType: TextInputType.number,
+            inputFormatters: TextFormatterShared.ageFormatter,
+            onSaved: (value) => formDataController.updateAge(value!),
             decoration: InputDecoration(
               border: TextFormFieldBorderWidget.defaultBorder,
               focusedBorder: TextFormFieldBorderWidget.defaultBorder,
@@ -76,16 +86,19 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
             ),
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: phoneEc,
-            onChanged: (value) {
-              if (value.length == 11) {
-                final phoneDDD = value.substring(0, 2);
-                final phoneNumber = value.substring(2, 9);
-                formDataController.updatePhone(
-                  ddd: int.parse(phoneDDD),
-                  phoneNumber: phoneNumber,
-                );
-              }
+            validator: validator.phone,
+            keyboardType: TextInputType.number,
+            inputFormatters: TextFormatterShared.phoneFormatter,
+            onSaved: (value) {
+              final phoneWithOutMask = toNumericString(value);
+              final phoneDDD = phoneWithOutMask.substring(0, 2);
+              final phoneNumber = phoneWithOutMask.substring(2, 11);
+              formDataController.updatePhone(
+                ddd: int.parse(phoneDDD),
+                phoneNumber: phoneNumber,
+              );
             },
             decoration: InputDecoration(
               border: TextFormFieldBorderWidget.defaultBorder,

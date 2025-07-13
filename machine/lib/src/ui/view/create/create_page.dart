@@ -22,7 +22,6 @@ class _CreatePageState extends State<CreatePage> {
   final String _firstTopPhrase = 'Create new student';
   final String _secondTopPhrase =
       'Thank you for joining our platform.Lets set up your profile. this will help in team to identify and mention you';
-  String _mainButtonText = 'Continue';
   final firstStepFormKey = GlobalKey<FormState>();
   final secondStepFormKey = GlobalKey<FormState>();
 
@@ -41,7 +40,6 @@ class _CreatePageState extends State<CreatePage> {
     final createController = Provider.of<CreatePageController>(context);
     final studentsController = Provider.of<StudentsController>(context);
     final studentFormController = Provider.of<StudentFormController>(context);
-    
 
     return Scaffold(
       appBar: AppBarWidget(),
@@ -106,16 +104,14 @@ class _CreatePageState extends State<CreatePage> {
                     ),
                     onPressed: () {
                       createController.nextStep(
+                        formkeyFirstOne: firstStepFormKey,
+                        formkeySecondOne: secondStepFormKey,
                         studentController: studentsController,
                         studentFormController: studentFormController,
                       );
-
-                      createController.currentStep == 1
-                          ? _mainButtonText = 'Send'
-                          : _mainButtonText;
                     },
                     child: SimpleTextWidget(
-                      text: _mainButtonText,
+                      text: createController.buttonName,
                       fontSizeText: 14,
                       fontWeightText: FontWeight.w500,
                     ),

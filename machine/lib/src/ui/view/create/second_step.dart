@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:machine/src/shared/app_shared.dart';
+import 'package:machine/src/shared/text_formatter_shared.dart';
 import 'package:machine/src/ui/controller/student_form_controller.dart';
+import 'package:machine/src/ui/validations/form_validator.dart';
 import 'package:machine/src/ui/widgets/simple_text_widget.dart';
 import 'package:machine/src/ui/widgets/text_form_field_border_widget.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +23,8 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
   final cityEc = TextEditingController();
   final cityId = TextEditingController();
 
+  final validator = FormValidator();
+
   SimpleTextWidget formLabel(String labelString) {
     return SimpleTextWidget(
       text: labelString,
@@ -40,8 +44,11 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
         spacing: 12,
         children: [
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: zipCodeEc,
-            onChanged: (value) => formDataController.updateZipCode(value),
+            validator: validator.zipCode,
+            inputFormatters: TextFormatterShared.zipCodeFormatter,
+            onSaved: (value) => formDataController.updateZipCode(value!),
             decoration: InputDecoration(
               border: TextFormFieldBorderWidget.defaultBorder,
               focusedBorder: TextFormFieldBorderWidget.defaultBorder,
@@ -51,8 +58,10 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
             ),
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: streetEC,
-            onChanged: (value) => formDataController.updateStreet(value),
+            validator: validator.streetName,
+            onSaved: (value) => formDataController.updateStreet(value!),
             decoration: InputDecoration(
               border: TextFormFieldBorderWidget.defaultBorder,
               focusedBorder: TextFormFieldBorderWidget.defaultBorder,
@@ -62,8 +71,11 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
             ),
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: streetNumberEc,
-            onChanged: (value) => formDataController.updateStreetNumber(value),
+            validator: validator.streetNumber,
+            inputFormatters: TextFormatterShared.streetNumberFormatter,
+            onSaved: (value) => formDataController.updateStreetNumber(value!),
             decoration: InputDecoration(
               border: TextFormFieldBorderWidget.defaultBorder,
               focusedBorder: TextFormFieldBorderWidget.defaultBorder,
@@ -73,10 +85,12 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
             ),
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: cityEc,
-            onChanged:
+            validator: validator.cityName,
+            onSaved:
                 (value) =>
-                    formDataController.updateCity(idCity: 1, cityName: value),
+                    formDataController.updateCity(idCity: 1, cityName: value!),
             decoration: InputDecoration(
               border: TextFormFieldBorderWidget.defaultBorder,
               focusedBorder: TextFormFieldBorderWidget.defaultBorder,
