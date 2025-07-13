@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:machine/src/shared/app_shared.dart';
 import 'package:machine/src/shared/text_formatter_shared.dart';
+import 'package:machine/src/ui/controller/adress_from_zicode_controller.dart';
 import 'package:machine/src/ui/controller/student_form_controller.dart';
 import 'package:machine/src/ui/validations/form_validator.dart';
 import 'package:machine/src/ui/widgets/simple_text_widget.dart';
@@ -45,6 +46,16 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
   @override
   Widget build(BuildContext context) {
     final formDataController = Provider.of<StudentFormController>(context);
+    final adressFromZipCodeController =
+        Provider.of<AddressFromZicodeController>(context);
+
+    void searchAddress(String cep) async {
+      await adressFromZipCodeController.getAddress(cep: cep);
+      final address = adressFromZipCodeController.state;
+      streetEC.text = address.logradouro;
+      cityEc.text = address.localidade;
+      cityId.text = address.ibge;
+    }
 
     return Form(
       key: widget.formKey,
@@ -59,6 +70,12 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
             inputFormatters: TextFormatterShared.zipCodeFormatter,
             onSaved: (value) => formDataController.updateZipCode(value!),
             decoration: InputDecoration(
+              suffixIcon: TextButton.icon(
+                onPressed: () => searchAddress(zipCodeEc.text),
+                label: SimpleTextWidget(text: 'Search Address'),
+                icon: Icon(Icons.search),
+                iconAlignment: IconAlignment.end,
+              ),
               border: TextFormFieldBorderWidget.defaultBorder,
               focusedBorder: TextFormFieldBorderWidget.defaultBorder,
               errorBorder: TextFormFieldBorderWidget.errorBorder,
@@ -81,6 +98,25 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
           ),
           TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
+            controller: cityEc,
+            validator: validator.cityName,
+            onSaved: (value) {
+              formDataController.updateCity(
+                idCity: int.parse(cityId.text),
+                cityName: value!,
+              );
+            },
+            decoration: InputDecoration(
+              suffix: SimpleTextWidget(text: cityId.text),
+              border: TextFormFieldBorderWidget.defaultBorder,
+              focusedBorder: TextFormFieldBorderWidget.defaultBorder,
+              errorBorder: TextFormFieldBorderWidget.errorBorder,
+              isDense: true,
+              label: formLabel('City'),
+            ),
+          ),
+          TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: streetNumberEc,
             validator: validator.streetNumber,
             inputFormatters: TextFormatterShared.streetNumberFormatter,
@@ -91,21 +127,6 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
               errorBorder: TextFormFieldBorderWidget.errorBorder,
               isDense: true,
               label: formLabel('Street Number'),
-            ),
-          ),
-          TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            controller: cityEc,
-            validator: validator.cityName,
-            onSaved:
-                (value) =>
-                    formDataController.updateCity(idCity: 1, cityName: value!),
-            decoration: InputDecoration(
-              border: TextFormFieldBorderWidget.defaultBorder,
-              focusedBorder: TextFormFieldBorderWidget.defaultBorder,
-              errorBorder: TextFormFieldBorderWidget.errorBorder,
-              isDense: true,
-              label: formLabel('City'),
             ),
           ),
           Divider(color: AppShared.defaultGreyColor),

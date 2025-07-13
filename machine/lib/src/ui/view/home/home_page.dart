@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
+
       bottomNavigationBar: NavigationBarWidget(
         onTapFunction: (clickedButtonIndex) async {
           navigationBarController.setCurrentIndex(index: clickedButtonIndex);

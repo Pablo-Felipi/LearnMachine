@@ -29,6 +29,7 @@ class CreatePageController extends ChangeNotifier {
         formkeySecondOne.currentState?.save();
         final StudentModel newStudent = studentFormController.createStudent();
         await studentController.create(student: newStudent);
+        currentStep = 0;
         return true;
       }
     }

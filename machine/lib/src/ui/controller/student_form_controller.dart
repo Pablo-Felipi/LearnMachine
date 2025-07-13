@@ -25,7 +25,7 @@ class StudentFormController extends ChangeNotifier {
   void updateFullName(String value) => fullName = value;
 
   void updateAge(String value) {
-    if(value.isNotEmpty){
+    if (value.isNotEmpty) {
       age = int.parse(value);
     }
   }
@@ -49,8 +49,8 @@ class StudentFormController extends ChangeNotifier {
     phone = PhoneModel(ddd: ddd, phone: phoneNumber);
   }
 
-  void updateCity({required int idCity, required String cityName}) {
-    city = CityModel(id: idCity, name: cityName);
+  void updateCity({int? idCity, required String cityName}) {
+    city = CityModel(id: idCity ?? 0, name: cityName);
   }
 
   StudentModel createStudent() {
