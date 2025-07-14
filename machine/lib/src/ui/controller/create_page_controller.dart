@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:machine/src/domain/models/student/student_model.dart';
+import 'package:machine/src/shared/app_shared.dart';
 import 'package:machine/src/ui/controller/student_form_controller.dart';
 import 'package:machine/src/ui/controller/students_controller.dart';
 
@@ -7,6 +8,9 @@ enum StepForm { firstStep, secondStep }
 
 class CreatePageController extends ChangeNotifier {
   String buttonName = 'Continue';
+
+  Color firstStepColor = AppShared.defaultGreyColor;
+  Color secondStepColor = AppShared.defaultGreyColor;
 
   int currentStep = 0;
   Future<bool> nextStep({
@@ -20,6 +24,8 @@ class CreatePageController extends ChangeNotifier {
     if (firstFormValid && currentStep < 1) {
       formkeyFirstOne.currentState?.save();
       currentStep++;
+      firstStepColor = AppShared.defaultGreyColor;
+      setSecondStepColor();
       buttonName = 'Create';
       notifyListeners();
     } else {
@@ -40,4 +46,14 @@ class CreatePageController extends ChangeNotifier {
     StepForm.firstStep,
     StepForm.secondStep,
   ];
+
+  void setFirstStepColor() {
+    firstStepColor = AppShared.defaultBlueColor;
+    notifyListeners();
+  }
+
+  void setSecondStepColor() {
+    secondStepColor = AppShared.defaultBlueColor;
+    notifyListeners();
+  }
 }

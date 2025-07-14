@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:machine/src/ui/controller/create_page_controller.dart';
 import 'package:machine/src/ui/controller/navigation_bar_controller.dart';
 import 'package:machine/src/ui/controller/students_controller.dart';
 import 'package:machine/src/ui/view/create/create_page.dart';
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final studentController = Provider.of<StudentsController>(context);
     final navigationBarController = NavigationBarController();
+    final createController = Provider.of<CreatePageController>(context);
 
     return Scaffold(
       appBar: const AppBarWidget(),
@@ -58,6 +60,7 @@ class _HomePageState extends State<HomePage> {
           switch (clickedButtonIndex) {
             case 1:
               Navigator.of(context).pushNamed(CreatePage.createRoute);
+              createController.setFirstStepColor();
           }
         },
         controller: navigationBarController,

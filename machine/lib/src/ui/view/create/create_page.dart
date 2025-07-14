@@ -76,13 +76,10 @@ class _CreatePageState extends State<CreatePage> {
                 Row(
                   children: [
                     StepsContainerProgressWidget(
-                      stepColor: AppShared.defaultBlueColor,
+                      stepColor: createController.firstStepColor,
                     ),
                     StepsContainerProgressWidget(
-                      stepColor: AppShared.defaultGreyColor,
-                    ),
-                    StepsContainerProgressWidget(
-                      stepColor: AppShared.defaultGreyColor,
+                      stepColor: createController.secondStepColor,
                     ),
                   ],
                 ),

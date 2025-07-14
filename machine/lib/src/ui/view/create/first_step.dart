@@ -140,28 +140,26 @@ class _CreateFirstStepState extends State<CreateFirstStep> {
           Wrap(
             spacing: 4,
             children:
-                courses.map((courseItem) {
+                courses.map((courses) {
                   return FilterChip(
                     selectedColor: AppShared.defaultBlueColor,
                     backgroundColor: Colors.white,
-                    label: SimpleTextWidget(text: courseItem.name),
-                    selected: selectedItem.contains(courseItem.name),
+                    label: SimpleTextWidget(text: courses.name),
+                    selected: formDataController.selectedCourses.contains(
+                      courses.name,
+                    ),
                     onSelected: (bool selected) {
-                      setState(() {
-                        if (selected) {
-                          selectedItem.add(courseItem.name);
-                          formDataController.updateNameCourses(
-                            value: courseItem.name,
-                            delete: false,
-                          );
-                        } else {
-                          selectedItem.remove(courseItem.name);
-                          formDataController.updateNameCourses(
-                            value: courseItem.name,
-                            delete: true,
-                          );
-                        }
-                      });
+                      if (selected) {
+                        formDataController.selectedCourses.add(courses.name);
+                        formDataController.updateNameCourses(
+                          value: courses.name,
+                        );
+                      } else {
+                        formDataController.selectedCourses.remove(courses.name);
+                        formDataController.deleteNameCourses(
+                          value: courses.name,
+                        );
+                      }
                     },
                   );
                 }).toList(),

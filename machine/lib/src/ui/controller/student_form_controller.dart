@@ -6,6 +6,7 @@ import 'package:machine/src/domain/models/student/phone_model.dart';
 import 'package:machine/src/domain/models/student/student_model.dart';
 
 class StudentFormController extends ChangeNotifier {
+  List<String> selectedCourses = [];
   String fullName = '';
   int age = 0;
   List<String> nameCourses = [];
@@ -30,11 +31,14 @@ class StudentFormController extends ChangeNotifier {
     }
   }
 
-  void updateNameCourses({required String value, required bool delete}) {
-    if (delete) {
-      nameCourses.remove(value);
-    }
+  void updateNameCourses({required String value}) {
     nameCourses.add(value);
+    notifyListeners();
+  }
+
+  void deleteNameCourses({required String value}) {
+    nameCourses.remove(value);
+    notifyListeners();
   }
 
   void updateCoursesStudent({required List<Map<String, dynamic>> value}) {

@@ -67,6 +67,7 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: zipCodeEc,
             validator: validator.zipCode,
+            keyboardType: TextInputType.number,
             inputFormatters: TextFormatterShared.zipCodeFormatter,
             onSaved: (value) => formDataController.updateZipCode(value!),
             decoration: InputDecoration(
@@ -119,6 +120,7 @@ class _CreateSecondStepState extends State<CreateSecondStep> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: streetNumberEc,
             validator: validator.streetNumber,
+            keyboardType: TextInputType.number,
             inputFormatters: TextFormatterShared.streetNumberFormatter,
             onSaved: (value) => formDataController.updateStreetNumber(value!),
             decoration: InputDecoration(
